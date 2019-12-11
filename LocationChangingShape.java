@@ -15,6 +15,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     private final int MAX_VELOCITY_ABS = 5;
 
     private int Vx, Vy;
+    private Rectangle shapeBounds;
 
     /**
      * Abstraction Function:	This class represent a movable shape. LocationChangingShape's 'location' represent the

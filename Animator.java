@@ -3,6 +3,7 @@ package homework1;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -19,7 +20,7 @@ public class Animator extends JFrame implements ActionListener {
 	// preferred frame width and height.
 	private static final int WINDOW_WIDTH = 600;
 	private static final int WINDOW_HEIGHT = 400;
-	
+
 	private static final int MAX_HEIGHT = ((3 * WINDOW_HEIGHT) / 10);
     private static final int MAX_WIDTH = ((3* WINDOW_WIDTH) / 10);
     private static final int MIN_HEIGHT = (WINDOW_HEIGHT / 10);
@@ -34,7 +35,9 @@ public class Animator extends JFrame implements ActionListener {
 	private JCheckBoxMenuItem animationCheckItem;
 	private JPanel mainPanel;
 
-	// shapes that have been added to this
+	private Graphics2D graphics;
+	private BufferedImage image;
+	private boolean uninitialized;
 	
 	// TODO: Add and initialize a container of shapes called shapes.
 	private Collection<Shape> shapes = new HashSet<>();
@@ -49,10 +52,12 @@ public class Animator extends JFrame implements ActionListener {
 	 */
 	public Animator() {
 		super("Animator");
+		this.uninitialized = true;
 
 		// create main panel and menubar
 		mainPanel = (JPanel)createMainPanel();
 		getContentPane().add(mainPanel);
+		
 		menuBar = (JMenuBar)createMenuBar();
         setJMenuBar(menuBar);
 
@@ -145,15 +150,17 @@ public class Animator extends JFrame implements ActionListener {
 	 * 			order to schedule the component for redrawing.
 	 */
 	public void paint(Graphics g) {
-		super.paint(g);
-
+		if ( uninitialized ) {
+			image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+			graphics = image.createGraphics();
+			uninitialized = false;
+		}
+		super.paint(graphics);
 		//TODO: Add code for drawing all shapes in this
-		Iterator<Shape> it = shapes.iterator();
-        while(it.hasNext()){
-        	it.next().draw(getContentPane().getGraphics());
-        }
-
-		
+		for(Shape s : shapes){
+			s.draw(graphics);
+		}
+		g.drawImage(image, 0, 0, null);
 	}
 
 
