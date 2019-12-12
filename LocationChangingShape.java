@@ -108,18 +108,45 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     public void step(Rectangle bound) {
         assert checkRep();
         Rectangle shapeBounds = getBounds();
-        assert bound.contains(shapeBounds);// part of r is never outside bound
-       if(getLocation().getX() + shapeBounds.getMaxX() + Vx > bound.getMaxX() ||
-               getLocation().getX() + shapeBounds.getMinX() + Vx < bound.getMinX()){
-           Vx = -Vx;
-       }
-        if(getLocation().getY() + shapeBounds.getMaxY() + Vy > bound.getMaxY() ||
-                getLocation().getY() + shapeBounds.getMinY() + Vy < bound.getMinY()){
-            Vy = -Vy;
+        shapeBounds.setLocation(getLocation().x, getLocation().y);
+        //assert bound.contains(shapeBounds);// part of r is never outside bound
+        if (!bound.contains(shapeBounds) ||
+                shapeBounds.getMaxX() + Vx > bound.getMaxX() ||
+                getLocation().getX() +  Vx < bound.getMinX()||
+                shapeBounds.getMaxY() + Vy > bound.getMaxY() ||
+                getLocation().getY() +  Vx < bound.getMinY()){
+            if((shapeBounds.getCenterX() > bound.getCenterX() && Vx > 0) ||
+                      (shapeBounds.getCenterX() < bound.getCenterX() && Vx < 0)){
+                Vx = -Vx;
+            }
+            if((shapeBounds.getCenterY() > bound.getCenterY() && Vy > 0) ||
+                    (shapeBounds.getCenterY() < bound.getCenterY() && Vy < 0)){
+                Vy = -Vy;
+            }
         }
         setLocation(new Point(getLocation().x + getVelocityX(),
                 getLocation().y + getVelocityY()));
         assert checkRep();
+
+//        Rectangle shapeBounds = getBounds();
+//        //If (part of r is outside bound) or (r is within bound but adding v to p would bring part of r outside bound)
+//        if(!bound.contains(shapeBounds) || getLocation().getX() + shapeBounds.getMaxX() + Vx > bound.getMaxX() ||
+//                getLocation().getX() + shapeBounds.getMinX() + Vx < bound.getMinX() ||
+//                getLocation().getY() + shapeBounds.getMaxY() + Vy > bound.getMaxY() ||
+//                getLocation().getY() + shapeBounds.getMinY() + Vy < bound.getMinY()){
+//            //If adding v to p would move r horizontally farther away from the center of bound
+//            if((shapeBounds.getCenterX() > bound.getCenterX() || Vx > 0) ||
+//                    (shapeBounds.getCenterX() < bound.getCenterX() || Vx < 0)){
+//                Vx = -Vx;
+//            }
+//            //If adding v to p would move r vertically farther away from the center of bound
+//
+//            if((shapeBounds.getCenterY() > bound.getCenterY() || Vy > 0) ||
+//                    (shapeBounds.getCenterY() < bound.getCenterY() || Vy < 0)){
+//                Vy = -Vy;
+//            }
+//        }
+
 
 //        Shape nextShape =  (Shape)clone();
 //        Point nextPoint = new Point(getLocation().x+Vx, getLocation().y+Vy);

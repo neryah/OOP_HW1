@@ -40,9 +40,10 @@ public class Animator extends JFrame implements ActionListener {
 	private boolean uninitialized;
 	
 	// TODO: Add and initialize a container of shapes called shapes.
+	private Rectangle frame = new Rectangle(Animator.WINDOW_WIDTH, Animator.WINDOW_HEIGHT);
 	private Collection<Shape> shapes = new HashSet<>();
 	private Random rand = new Random();
-	
+	private boolean frameInit = false;
 
 	/**
 	 * @modifies this
@@ -52,12 +53,11 @@ public class Animator extends JFrame implements ActionListener {
 	 */
 	public Animator() {
 		super("Animator");
-		this.uninitialized = true;
+		uninitialized = true;
 
 		// create main panel and menubar
 		mainPanel = (JPanel)createMainPanel();
 		getContentPane().add(mainPanel);
-		
 		menuBar = (JMenuBar)createMenuBar();
         setJMenuBar(menuBar);
 
@@ -67,14 +67,12 @@ public class Animator extends JFrame implements ActionListener {
                 if (animationCheckItem.isSelected()) {
                 	// TODO: Add code for making one animation step for all
                 	// 		 shapes in this
-                	Iterator<Shape> it = shapes.iterator();
-                    while(it.hasNext()){
-                    	Shape current = it.next();
-                    	if(current instanceof Animatable){
-                    		((Animatable)current).step(mainPanel.getBounds());
-                    	}
-                    }
-                
+					for(Shape s : shapes){
+						if(s instanceof Animatable){
+							((Animatable)s).step(frame);
+						}
+					}
+
             		repaint();	// make sure that the shapes are redrawn
                 }
             }
@@ -198,7 +196,12 @@ public class Animator extends JFrame implements ActionListener {
 			//		 its location and size are randomly selected &&
 			//		 1/10*WINDOW_WIDTH <= shape.width < 3/10*WINDOW_WIDTH &&
 			//		 1/10*WINDOW_HEIGHT <= shape.height < 3/10*WINDOW_HEIGHT
-			
+			if (!this.frameInit) {
+				this.frame.setLocation(getContentPane().getLocationOnScreen());
+				this.frameInit = true;
+			}
+
+
 			Color color = new Color(rand.nextInt());
         	int randWidth = rand.nextInt(MAX_WIDTH-MIN_WIDTH+1) + MIN_WIDTH;
         	int randHeight = rand.nextInt(MAX_HEIGHT-MIN_HEIGHT+1) + MAX_HEIGHT;

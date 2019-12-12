@@ -8,7 +8,7 @@ import java.awt.Dimension;
  * U can get valid size through getDimension()
  */
 public class ImpossibleSizeException extends RuntimeException {
-    private static final Dimension def = new Dimension(10,10);
+    private static final Dimension def = new Dimension(40,60);
     /**
      * @effects creates new Dimension instance with valid parameters for setSize()
      */
