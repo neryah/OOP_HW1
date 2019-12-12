@@ -26,8 +26,6 @@ public abstract class Shape implements Cloneable {
 
 
 	private boolean checkRep(){
-	    assert location.getX() >= 0;
-	    assert location.getY() >=0;
 	    boolean locationIsValid = location!=null && location.getX() >= 0 && location.getY() >=0;
 	    return locationIsValid && color != null;
     }
