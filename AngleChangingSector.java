@@ -94,7 +94,10 @@ public class AngleChangingSector extends Shape implements Animatable {
 	@Override
 	public Rectangle getBounds() {
 		this.checkRep();
-		return new Rectangle(this.dimension);
+		Rectangle shapeBounds = new Rectangle(this.dimension);
+		shapeBounds.setLocation(getLocation().x, getLocation().y);
+		this.checkRep();
+		return shapeBounds;
 	}
 
 	/**

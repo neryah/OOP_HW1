@@ -47,8 +47,7 @@ public class LocationChangingNumberedOval extends LocationChangingOval {
 		if (this.getColor().getBlue() < 90 && this.getColor().getGreen() < 90 && this.getColor().getRed() < 90) {
 			g.setColor(Color.WHITE);
 		}
-		g.drawString(new Integer(serialNumber).toString(),
-				(int)getLocation().getX() + (int)this.getBounds().getCenterX(), (int)getLocation().getY() + (int)this.getBounds().getCenterY());
+		g.drawString(new Integer(serialNumber).toString(), (int)this.getBounds().getCenterX(), (int)this.getBounds().getCenterY());
 		
 		//g.drawString(String.valueOf(this.serialNumber), this.getLocation().x+this.getBounds().width/2, this.getLocation().y+this.getBounds().height/2);
 

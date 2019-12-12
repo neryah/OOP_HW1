@@ -201,15 +201,15 @@ public class Animator extends JFrame implements ActionListener {
 				this.frameInit = true;
 			}
 
-
 			Color color = new Color(rand.nextInt());
         	int randWidth = rand.nextInt(MAX_WIDTH-MIN_WIDTH+1) + MIN_WIDTH;
         	int randHeight = rand.nextInt(MAX_HEIGHT-MIN_HEIGHT+1) + MAX_HEIGHT;
+			Dimension dimension = new Dimension(randWidth, randHeight);
+
         	int randX = rand.nextInt(WINDOW_WIDTH-randWidth+1);
-        	int randY = rand.nextInt(WINDOW_HEIGHT-randHeight+1);
-        	
+        	int randY = rand.nextInt(WINDOW_HEIGHT-randHeight+1) + 50;
         	Point location = new Point(randX, randY);
-        	Dimension dimension = new Dimension(randWidth, randHeight);
+
         	
         	Shape shape;
         	if(source.equals(rectangleItem)){

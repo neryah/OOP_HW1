@@ -58,7 +58,9 @@ public class LocationChangingOval extends LocationChangingShape implements Clone
      */
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(this.dimension);
+		Rectangle shapeBounds = new Rectangle(this.dimension);
+		shapeBounds.setLocation(getLocation().x, getLocation().y);
+		return shapeBounds;
 	}
 
 	/**
