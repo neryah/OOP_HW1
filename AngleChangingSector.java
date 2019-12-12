@@ -60,15 +60,7 @@ public class AngleChangingSector extends Shape implements Animatable {
 	@Override
 	public void step(Rectangle bound) {
 		this.checkRep();
-//		if (sectorAngle == AngleChangingSector.MAX_ANGLE) {
-//			goingUp = false;
-//		} else if (sectorAngle == 0) {
-//			goingUp = true;
-//		}
-		//int direct = goingUp ? 1 : -1;
 		startAngle = (startAngle + 1)%AngleChangingSector.MAX_ANGLE;
-		//sectorAngle = (sectorAngle + 1)%AngleChangingSector.MAX_ANGLE;
-
 		this.checkRep();
 	}
 
@@ -85,7 +77,7 @@ public class AngleChangingSector extends Shape implements Animatable {
 	public void setSize(Dimension dimension) throws ImpossibleSizeException {
 		this.checkRep();
 		if (dimension.getHeight() <= 0 || dimension.getWidth() <= 0) {
-			throw new ImpossibleSizeException();//throw new ImpossibleSizeException(new Dimension(1, 1));
+			throw new ImpossibleSizeException();
 		}
 		this.dimension = (Dimension)dimension.clone();
 		this.checkRep();

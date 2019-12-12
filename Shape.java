@@ -1,6 +1,5 @@
 package homework1;
 
-import java.io.File;
 import java.awt.*;
 
 
