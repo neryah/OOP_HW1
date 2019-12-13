@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -66,11 +67,13 @@ public class Animator extends JFrame implements ActionListener {
                 if (animationCheckItem.isSelected()) {
                 	// TODO: Add code for making one animation step for all
                 	// 		 shapes in this
-					for(Shape s : shapes){
-						if(s instanceof Animatable){
-							((Animatable)s).step(frame);
-						}
-					}
+                	Iterator<Shape> it = shapes.iterator();
+                	while(it.hasNext()) {
+                		Shape current = it.next();
+                		if(current instanceof Animatable) {
+                			((Animatable)current).step(frame);
+                		}
+                	}
 
             		repaint();	// make sure that the shapes are redrawn
                 }
@@ -206,7 +209,7 @@ public class Animator extends JFrame implements ActionListener {
 			Dimension dimension = new Dimension(randWidth, randHeight);
 
         	int randX = rand.nextInt(WINDOW_WIDTH-randWidth+1);
-        	int randY = rand.nextInt(WINDOW_HEIGHT-randHeight+1) + 50;
+        	int randY = rand.nextInt(WINDOW_HEIGHT-randHeight+1) + 50 ;
         	Point location = new Point(randX, randY);
 
         	

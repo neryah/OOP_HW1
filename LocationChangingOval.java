@@ -19,7 +19,7 @@ public class LocationChangingOval extends LocationChangingShape implements Clone
 	 */
 	
 	/**
-	 * Rep. Invariant: same as LocationChangingShape.
+	 * Representation Invariant: same as LocationChangingShape.
 	 */
 	
 

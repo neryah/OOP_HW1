@@ -4,13 +4,19 @@ import java.awt.Dimension;
 //TODO
 
 /**
- * Getting this exception means u use setSize() of <? extends Shape> with wrong size.
- * U can get valid size through getDimension()
+ * ImpossibleSizeException is a class inheriting from java RuntimeException class.
+ * ImpossibleSizeException class has also a class property: {def- the
+ * size which is given in case ImpossibleSizeException was thrown}. 
  */
 public class ImpossibleSizeException extends RuntimeException {
-    private static final Dimension def = new Dimension(40,60);
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final Dimension def = new Dimension(40,60);
     /**
      * @effects creates new Dimension instance with valid parameters for setSize()
+     * @return valid Dimension
      */
     public Dimension getDimension(){
         return new Dimension(def);

@@ -15,7 +15,7 @@ public class LocationChangingRectangle extends LocationChangingShape implements 
 	 */
 	
 	/**
-	 * Rep. Invariant: same as LocationChangingShape.
+	 * Representation Invariant: same as LocationChangingShape.
 	 */
 	
 	/**

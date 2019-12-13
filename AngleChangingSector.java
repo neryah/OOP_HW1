@@ -17,18 +17,17 @@ public class AngleChangingSector extends Shape implements Animatable {
 	private static final int MAX_ANGLE = 359;
 	private int startAngle;
 	private int sectorAngle;
-	private boolean goingUp;
 	private Dimension dimension;
 	
 	/**
 	 * Abstraction Function:	The class represents an angle changing sector in a way that the angle animation base is
 	 * 							given in the field startAngle and the angle between that base and the rest of the 
-	 * 							visible sector is given by the field sectorAngle. The direction of the animation is
-	 * 							given by the field goingUp. The size is given by the special field dimension.
+	 * 							visible sector is given by the field sectorAngle. 
+	 * 							The size is given by the special field dimension.
 	 */
 	
 	/**
-	 * Rep. Invariant:	0 <= (startAngle, sectorAngle) < 360
+	 * Representation Invariant:	0 <= (startAngle, sectorAngle) < 360
 	 */
 	
 	private void checkRep() {
@@ -47,7 +46,6 @@ public class AngleChangingSector extends Shape implements Animatable {
 		this.setSize(dimension);
 		this.startAngle = startAngle;
 		this.sectorAngle = sectorAngle;
-		this.goingUp = true;
 		this.checkRep();
 	}
 

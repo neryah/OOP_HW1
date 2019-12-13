@@ -15,7 +15,6 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     private final int MAX_VELOCITY_ABS = 5;
 
     private int Vx, Vy;
-    private Rectangle shapeBounds;
 
     /**
      * Abstraction Function:	This class represent a movable shape. LocationChangingShape's 'location' represent the
@@ -46,13 +45,17 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
 	LocationChangingShape(Point location, Color color) {
         super(location, color);
         Random r = new Random();
-        Vx = r.nextInt(2*MAX_VELOCITY_ABS) - MAX_VELOCITY_ABS;//random integer V such that -5 <= V < 5
+        Vx = r.nextInt(2*MAX_VELOCITY_ABS) - MAX_VELOCITY_ABS;
+        //random integer V such that -5 <= Vx <= 5
         if(Vx == 0){
-            Vx = MAX_VELOCITY_ABS;
+            //Vx = MAX_VELOCITY_ABS;
+            Vx = 3;
         }
-        Vy = r.nextInt(2*MAX_VELOCITY_ABS) - MAX_VELOCITY_ABS;//random integer V such that -5 <= V < 5
+        Vy = r.nextInt(2*MAX_VELOCITY_ABS) - MAX_VELOCITY_ABS;
+        //random integer V such that -5 <= Vy <= 5
         if(Vy == 0){
-            Vy = MAX_VELOCITY_ABS;
+            //Vy = MAX_VELOCITY_ABS;
+            Vy = 3;
         }
         assert checkRep();
     }
@@ -111,7 +114,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
         boolean nextXIsBad = shapeBounds.getMaxX() + Vx > bound.getMaxX() ||
                 getLocation().getX() +  Vx < bound.getMinX();
         boolean nextYIsBad = shapeBounds.getMaxY() + Vy > bound.getMaxY() ||
-                getLocation().getY() +  Vx < bound.getMinY();
+                getLocation().getY() +  Vy < bound.getMinY();
         if (!bound.contains(shapeBounds) || nextXIsBad || nextYIsBad){
             if((shapeBounds.getCenterX() > bound.getCenterX() && Vx > 0) ||
                       (shapeBounds.getCenterX() < bound.getCenterX() && Vx < 0)){

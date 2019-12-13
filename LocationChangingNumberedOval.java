@@ -19,7 +19,7 @@ public class LocationChangingNumberedOval extends LocationChangingOval {
 	 */
 	
 	/**
-	 * Rep. Invariant:	Same as LocationChangingOval.
+	 * Representation Invariant:	Same as LocationChangingOval.
 	 */
 
 	/**
