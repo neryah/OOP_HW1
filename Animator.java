@@ -157,9 +157,11 @@ public class Animator extends JFrame implements ActionListener {
 		}
 		super.paint(graphics);
 		//TODO: Add code for drawing all shapes in this
-		for(Shape s : shapes){
-			s.draw(graphics);
-		}
+		Iterator<Shape> it = shapes.iterator();
+    	while(it.hasNext()) {
+    		Shape current = it.next();
+    		current.draw(graphics);
+    		}
 		g.drawImage(image, 0, 0, null);
 	}
 

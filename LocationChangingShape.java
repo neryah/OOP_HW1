@@ -48,14 +48,12 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
         Vx = r.nextInt(2*MAX_VELOCITY_ABS) - MAX_VELOCITY_ABS;
         //random integer V such that -5 <= Vx <= 5
         if(Vx == 0){
-            //Vx = MAX_VELOCITY_ABS;
-            Vx = 3;
+            Vx = MAX_VELOCITY_ABS;
         }
         Vy = r.nextInt(2*MAX_VELOCITY_ABS) - MAX_VELOCITY_ABS;
         //random integer V such that -5 <= Vy <= 5
         if(Vy == 0){
-            //Vy = MAX_VELOCITY_ABS;
-            Vy = 3;
+            Vy = MAX_VELOCITY_ABS;
         }
         assert checkRep();
     }
